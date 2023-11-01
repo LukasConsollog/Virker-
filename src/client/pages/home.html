@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+      #reviewText {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        resize: none;
+        height: 80px;
+      }
+      .star-rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0;
+      }
+
+      .star-rating i {
+        font-size: 24px;
+        color: #ddd;
+        cursor: pointer;
+        margin: 0 5px;
+      }
+
+      .star-rating i:hover,
+      .star-rating i.active {
+        color: #ffcc00;
+      }
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+        background-color: #dfc0d8;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .header {
+        background-color: #facbf2;
+        color: rgb(8, 7, 7);
+        padding: 20px;
+        text-align: center;
+        font-size: 1.5em;
+      }
+
+      .juice-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 20px auto;
+      }
+
+      .juice-card {
+        width: 30%;
+        margin: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .juice-card:hover {
+        transform: scale(1.05);
+      }
+
+      .juice-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .juice-info {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .juice-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #212121;
+      }
+
+      .juice-price {
+        color: #f1bee4;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+      }
+
+      .review-button {
+        background-color: #e5c0db;
+        color: rgb(1, 1, 1);
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+      }
+      .button-container {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .button-container button {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #fff;
+      }
+
+      .submit-button {
+        background-color: #f9a0e7;
+      }
+
+      .close-button {
+        background-color: #f9a0e7;
+      }
+    </style>
+    <title>Joe and the Juice</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Joe and the Juice</h1>
+    </div>
+
+    <div class="juice-container">
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be837da8-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzbhnzkyzgeyltc4zwqtngy1mi1hnju2lwflzthkyza4ytc1nc9kt0vziedyzwvuie1pbgutediuanbn.jpeg?w=600"
+          alt="Juice 0"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Green Mile</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Green Mile')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Green Mile')">
+            Show Reviews
+          </button>
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea5e050-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2m1ntc5m2zmlwrlndktngfhns1hzmy1ltu4yje4owzkmtgxyy9kt0vzielkzw50axr5lxgylmpwzw__.jpeg?w=600"
+          alt="Juice 1"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Joe's Identity</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Joes Identity')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Joes Identity')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beaca80e-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzc1mjm5mgezlwu1nditngi2os1iytywltgwm2exytlkmzc5ns9fbmvyz2l6zxitediuanbn.jpeg?w=600"
+          alt="Juice 2"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Energizer</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Energizer')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Energizer')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea828a6-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzc5yjk5owmylta5zjatndq4os1imwy0ltg1zty2mzc5mwvmmi9hbybbd2f5iervyy14mi5qcgc_.jpeg?w=600"
+          alt="Juice 3"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Go Away Doc</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Go Away Doc')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Go Away Doc')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea94754-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzdjoti0mgrklwu5ymytndg1oc1iytuzlwe1mdrlzgzkngizoc9hcmvlbibub25pyy14mi5qcgc_.jpeg?w=600"
+          alt="Juice 4"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Green Tonic</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Green Tonic')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Green Tonic')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be91a0ae-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2njotk3mzrkltvkmdctndawys05zme1ltayyte0ndk2odbimi9izwxsie9mieegtmvydmutediuanbn.jpeg?w=600"
+          alt="Juice 5"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Hell of a nerve</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Hell of a nerve')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Hell of a nerve')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beb1404e-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2uxymuzodcxltfkmjktngzlzi1hzgu2lwm3ytexzdg5yjuyoc9jcm9uie1hbi14mi5qcgc_.jpeg?w=600"
+          alt="Juice 6"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Iron Man</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Iron Man')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Iron Man')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8f5844-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2y4nme2njezlwy0ngqtndu2zi1iotq2ltg0zwflytg1nwjhzi9kt0vziefnry14mi5qcgc_.jpeg?w=600"
+          alt="Juice 7"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Joe's AMG</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Joes AMG')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Joes AMG')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beaeed26-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzfkmduxodyzlwvmm2etnge3mc1iyzfhlwrlzta0nmu4otg4mi9qawnrie1lifvwlxgylmpwzw__.jpeg?w=600"
+          alt="Juice 8"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Pick me up</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Pick me up')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Pick me up')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8adc1a-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzc5yjhmzddhltbhn2itngjizs1imtm1lwvmnmu1ztm1yzrmnc9qcmluy2ugb2ygr3jlzw4tediuanbn.jpeg?w=600"
+          alt="Juice 9"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Prince of Green</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Prince of Green')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Prince of Green')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beab92ca-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2u0yzc4ote1lwzmndktndu5zs1howvhlti4n2zhythmmgyxmi9tcg9ydhmgsnvpy2utediuanbn.jpeg?w=600"
+          alt="Juice 10"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Sports Juice</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Sports Juice')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Sports Juice')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be95594c-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzzjzmewmme4lwi1yzgtngrkys04ytbhltq5zgzhoduzzwrmys9tdhjlc3mgrg93bi14mi5qcgc_.jpeg?w=600"
+          alt="Juice 11"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Stress Down</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Stress Down')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Stress Down')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8492ce-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2e1odnlndy0lwmyzdctngm1zc04ndc3ltc0mjizzwmwytnkny9hcmvlbibtagllbgqtediuanbn.jpeg?w=600"
+          alt="Juice 15"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Green Shield</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Green Shield')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Green Shield')">
+            Show Reviews
+        </div>
+      </div>
+
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea70e80-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2m0nzdmzwe5ltjjntutndyzoc04ngewlty1mzmwnjhingjkzs9izxjiifrvbmljlxgylmpwzw__.jpeg?w=600"
+          alt="Juice 16"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Herb Tonic</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Herb Tonic')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Herb Tonic')">
+            Show Reviews
+        </div>
+      </div>
+      <div class="juice-card">
+        <img
+          class="juice-image"
+          src="https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beb36c0c-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2myndmznwy1lwziotatngm1yi04ywuwlty4ndvhmjg2mtfiys9qb3dlcibtagfrzs14mi5qcgc_.jpeg?w=600"
+          alt="Juice 17"
+        />
+        <div class="juice-info">
+          <div class="juice-title">Power Shake</div>
+          <div class="juice-price">60Kr</div>
+          <button class="review-button" onclick="writeReview('Power Shake')">
+            Write Review
+          </button>
+          <button class="review-button" onclick="showReview('Power Shake')">
+            Show Reviews
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="review-overlay">
+      <h2 id="popup-title"></h2>
+      <textarea id="reviewText" placeholder="Write your review..."></textarea>
+      <div class="star-rating">
+          <span>Rating: </span>
+          <i class="fas fa-star" onclick="setRating(1)"></i>
+          <i class="fas fa-star" onclick="setRating(2)"></i>
+          <i class="fas fa-star" onclick="setRating(3)"></i>
+          <i class="fas fa-star" onclick="setRating(4)"></i>
+          <i class="fas fa-star" onclick="setRating(5)"></i>
+      </div>
+      <button class="submit-button" onclick="submitReview()">Submit Review</button>
+      <button class="close-button" onclick="closeOverlay()">Close</button>
+  </div>
+  
+
+    <script>
+  let selectedRating = 0;
+
+  function writeReview(juiceName) {
+    const overlay = document.getElementById("review-overlay");
+    overlay.style.display = "block";
+    const popupTitle = document.getElementById("popup-title");
+    popupTitle.textContent = `Write a review for ${juiceName}`;
+    const submitButton = document.querySelector(".submit-button");
+    submitButton.onclick = function () {
+        submitReview(juiceName);
+    };
+}
+
+function closeOverlay() {
+  const overlay = document.getElementById("reviewOverlay");
+  overlay.style.display = "none";
+  resetRating();
+}
+
+function setRating(rating) {
+  selectedRating = rating;
+  updateStars();
+}
+
+function updateStars() {
+  const stars = document.querySelectorAll(".star-rating i");
+  stars.forEach((star, index) => {
+    star.classList.toggle("active", index < selectedRating);
+  });
+}
+
+function resetRating() {
+  selectedRating = 0;
+  updateStars();
+}
+
+function submitReview(juiceName) {
+    const reviewText = document.getElementById("reviewText").value;
+    const stars = document.querySelectorAll(".star-rating i.active").length;
+
+    // You may replace 'username' with the actual username of the reviewer
+    const username = "username";
+
+    // Make a POST request to your server
+    fetch("http://localhost:5500/submit-review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        juiceName,
+        stars,
+        review: reviewText,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        closeOverlay();
+      })
+      .catch((error) => {
+        console.error("Error submitting review:", error);
+        alert("Error submitting review. Please try again.");
+      });
+  }
+    </script>
+  </body>
+</html>
