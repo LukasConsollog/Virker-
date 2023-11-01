@@ -14,9 +14,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "pages", "home.html"));
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello, this is your server!");
-});
 app.use(express.static(path.join(__dirname, "Client")));
 
 // Endpoint to handle review submission
