@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -15,7 +16,10 @@ app.use("/cloudinary", cloudinaryRoute);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-app.use(express.static("../home.html"));
+
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "../home.html"));
+});
 
 app.listen(3000, () => {
   console.log("Server open on port 3000");
