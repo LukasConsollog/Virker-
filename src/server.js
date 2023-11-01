@@ -15,10 +15,7 @@ app.use("/cloudinary", cloudinaryRoute);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-app.get("/home", (req, res) => {
-  // Send the home.html file
-  res.sendFile(path.join(__dirname, "Virker-/client/pages/home.html"));
-});
+app.use(express.static("../home.html"));
 
 app.listen(3000, () => {
   console.log("Server open on port 3000");
