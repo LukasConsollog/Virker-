@@ -15,6 +15,10 @@ app.use("/cloudinary", cloudinaryRoute);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
+app.get("/home", (req, res) => {
+  // Send the home.html file
+  res.sendFile(path.join(__dirname, "client/pages/home.html"));
+});
 
 app.listen(3000, () => {
   console.log("Server open on port 3000");
