@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 app.get("/home", (req, res) => {
   // Send the home.html file
-  res.sendFile(path.join(__dirname, "client/pages/home.html"));
+  res.sendFile(path.join(__dirname, "Virker-/client/pages/home.html"));
 });
 
 app.listen(3000, () => {
