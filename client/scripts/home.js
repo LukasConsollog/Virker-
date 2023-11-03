@@ -1,59 +1,66 @@
-let responseDom = document.getElementById("response");
+let selectedRating = 0;
 
-function getUsers() {
-  axios
-    .get("http://localhost:3000/customer")
-    .then(function (response) {
-      // handle success
-      console.log(response.data);
-      responseDOM.innerHTML = "All users available in console";
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .finally(function () {
-      // always executed
-    });
-}
-
-function saveUser() {
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  const user = {
-    username,
-    email,
-    password,
+function writeReview(juiceName) {
+  const overlay = document.getElementById("review-overlay");
+  overlay.style.display = "block";
+  const popupTitle = document.getElementById("popup-title");
+  popupTitle.textContent = `Write a review for ${juiceName}`;
+  const submitButton = document.querySelector(".submit-button");
+  submitButton.onclick = function () {
+    submitReview(juiceName);
   };
-
-  axios
-    .post("http://localhost:3000/customer", user)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 }
 
-function saveImage() {
-  const image = document.getElementById("image").files[0];
+function closeOverlay() {
+  const overlay = document.getElementById("reviewOverlay");
+  overlay.style.display = "none";
+  resetRating();
+}
 
-  const formData = new FormData();
-  formData.append("image", image);
+function setRating(rating) {
+  selectedRating = rating;
+  updateStars();
+}
 
-  axios
-    .post("http://localhost:3000/cloudinary/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+function updateStars() {
+  const stars = document.querySelectorAll(".star-rating i");
+  stars.forEach((star, index) => {
+    star.classList.toggle("active", index < selectedRating);
+  });
+}
+
+function resetRating() {
+  selectedRating = 0;
+  updateStars();
+}
+
+function submitReview(juiceName) {
+  const reviewText = document.getElementById("reviewText").value;
+  const stars = document.querySelectorAll(".star-rating i.active").length;
+
+  // You may replace 'username' with the actual username of the reviewer
+  const username = "username";
+
+  // Make a POST request to your server
+  fetch("http://localhost:3000/submitreview", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      juiceName,
+      stars,
+      review: reviewText,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(data.message);
+      closeOverlay();
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
+      console.error("Error submitting review:", error);
+      alert("Error submitting review. Please try again.");
     });
 }

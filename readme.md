@@ -1,4 +1,0 @@
-wd
-ssd
-hej
-Wallah
