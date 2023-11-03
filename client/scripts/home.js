@@ -42,7 +42,7 @@ function submitReview(juiceName) {
   const username = "username";
 
   // Make a POST request to your server
-  fetch("http://localhost:3000/submitreview", {
+  fetch("http://159.89.111.84/submitreview", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
