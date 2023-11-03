@@ -1,26 +1,25 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
 const port = 3000;
+const path = require("path");
 app.use(cors());
 app.use(bodyParser.json());
-const path = require("path");
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "client")));
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "pages", "home.html"));
-});
+app.use(express.static(path.join(__dirname, "../client")));
 
-app.use(express.static(path.join(__dirname, "Client")));
+// Handle requests for the root URL
+app.get("/", (req, res) => {
+  res.sendFile("pages/home.html", { root: path.join(__dirname, "../client") });
+});
 
 // Endpoint to handle review submission
 const juices = [
   // ... (your juice objects)
 ];
-app.post("/submit-review", (req, res) => {
+app.post("/submitreview", (req, res) => {
   const { username, juiceName, stars, review } = req.body;
   console.log("Received review submission:", {
     username,
