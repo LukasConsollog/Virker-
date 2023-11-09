@@ -1,24 +1,3 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const app = express();
-const port = 3000;
-const path = require("path");
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.json());
-
-app.use(express.static(path.join(__dirname, "../client")));
-
-// Handle requests for the root URL
-app.get("*", (req, res) => {
-  console.log(
-    "Serving HTML file at:",
-    path.join(__dirname, "../client/pages/home.html")
-  );
-  res.sendFile("pages/home.html", { root: path.join(__dirname, "../client") });
-});
-
 // Endpoint to handle review submission
 const juices = [
   {
@@ -127,34 +106,4 @@ const juices = [
     reviews: [],
   },
 ];
-app.post("/submitreview", (req, res) => {
-  const { username, juiceName, stars, review } = req.body;
-  console.log("Received review submission:", {
-    username,
-    juiceName,
-    stars,
-    review,
-  });
-  // Find the corresponding juice by name
-  const juice = juices.find((juice) => juice.name === juiceName);
-
-  if (!juice) {
-    return res.status(404).json({ error: "Juice not found" });
-  }
-
-  // Add the review to the juice object
-  juice.reviews.push({
-    username,
-    stars,
-    review,
-  });
-
-  res.json({ message: "Review submitted successfully" });
-});
-app.get("/getjuices", (req, res) => {
-  res.json({ juices });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+module.exports = juices;
