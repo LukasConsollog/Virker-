@@ -3,21 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = 3000;
+
 const path = require("path");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
-
-app.use(express.static(path.join(__dirname, "../client")));
-
-// Handle requests for the root URL
-app.get("*", (req, res) => {
-  console.log(
-    "Serving HTML file at:",
-    path.join(__dirname, "../client/pages/home.html")
-  );
-  res.sendFile("pages/home.html", { root: path.join(__dirname, "../client") });
-});
 
 // Endpoint to handle review submission
 const juices = [
@@ -54,7 +44,14 @@ const juices = [
     image:
       "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea94754-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzdjoti0mgrklwu5ymytndg1oc1iytuzlwe1mdrlzgzkngizoc9hcmvlbibub25pyy14mi5qcgc_.jpeg?w=600",
     price: "60Kr",
-    reviews: [],
+    reviews: [
+      {
+        username: "username",
+        juiceName: "Green Tonic",
+        stars: 5,
+        review: "Hej",
+      },
+    ],
   },
   {
     name: "Hell of a nerve",
@@ -153,6 +150,16 @@ app.post("/submitreview", (req, res) => {
 });
 app.get("/getjuices", (req, res) => {
   res.json({ juices });
+});
+app.use(express.static(path.join(__dirname, "../client")));
+
+// Handle requests for the root URL
+app.get("*", (req, res) => {
+  console.log(
+    "Serving HTML file at:",
+    path.join(__dirname, "../client/pages/home.html")
+  );
+  res.sendFile("pages/home.html", { root: path.join(__dirname, "../client") });
 });
 
 app.listen(port, () => {
