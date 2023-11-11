@@ -56,7 +56,7 @@ const juices = [
   {
     name: "Hell of a nerve",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/be8f5844-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2y4nme2njezlwy0ngqtndu2zi1iotq2ltg0zwflytg1nwjhzi9kt0vziefnry14mi5qcgc_.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be91a0ae-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2njotk3mzrkltvkmdctndawys05zme1ltayyte0ndk2odbimi9izwxsie9mieegtmvydmutediuanbn.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
@@ -70,49 +70,49 @@ const juices = [
   {
     name: "Joes AMG",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8adc1a-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzc5yjhmzddhltbhn2itngjizs1imtm1lwvmnmu1ztm1yzrmnc9qcmluy2ugb2ygr3jlzw4tediuanbn.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8f5844-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2y4nme2njezlwy0ngqtndu2zi1iotq2ltg0zwflytg1nwjhzi9kt0vziefnry14mi5qcgc_.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
   {
     name: "Pick me up",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beaeed26-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzfkmduxodyzlwvmm2etnge3mc1iyzfhlwrlzta0nmu4otg4mi9qb3dlcibtagfrzs14mi5qcgc_.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beaeed26-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzfkmduxodyzlwvmm2etnge3mc1iyzfhlwrlzta0nmu4otg4mi9qawnrie1lifvwlxgylmpwzw__.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
   {
     name: "Prince of Green",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/beb36c0c-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2myndmznwy1lwziotatngm1yi04ywuwlty4ndvhmjg2mtfiys9qb3dlcibtagfrzs14mi5qcgc_.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8adc1a-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzc5yjhmzddhltbhn2itngjizs1imtm1lwvmnmu1ztm1yzrmnc9qcmluy2ugb2ygr3jlzw4tediuanbn.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
   {
     name: "Sports Juice",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/be95594c-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzzjzmewmme4lwi1yzgtngrkys04ytbhltq5zgzhoduzzwrmys9tdhjlc3mgrg93bi14mi5qcgc_.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/beab92ca-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2u0yzc4ote1lwzmndktndu5zs1howvhlti4n2zhythmmgyxmi9tcg9ydhmgsnvpy2utediuanbn.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
   {
     name: "Stress Down",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea70e80-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2m0nzdmzwe5ltjjntutndyzoc04ngewlty1mzmwnjhingjkzs9izxjiifrvbmljlxgylmpwzw__.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be95594c-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0lzzjzmewmme4lwi1yzgtngrkys04ytbhltq5zgzhoduzzwrmys9tdhjlc3mgrg93bi14mi5qcgc_.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
   {
     name: "Green Shield",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/be8492ce-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2e1odnlndy0lwmyzdctngm1zc04ndc3ltc0mjizzwmwytnkny9hcmvlbibtagllbgqtediuanbn.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac08913829503ae845ee9/be8492ce-e437-11ed-9380-421ee64ebd4f_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2e1odnlndy0lwmyzdctngm1zc04ndc3ltc0mjizzwmwytnkny9hcmvlbibtagllbgqtediuanbn.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
   {
     name: "Herb Tonic",
     image:
-      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea828a6-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2m0nzdmzwe5ltjjntutndyzoc04ngewlty1mzmwnjhingjkzs9izxjiifrvbmljlxgylmpwzw__.jpeg?w=600",
+      "https://imageproxy.wolt.com/menu/menu-images/624ac0a21bfa52937bedc542/bea70e80-e437-11ed-b273-9e2c81d52131_ahr0chm6ly9kztj5exb2bgqwzzdzlmnsb3vkznjvbnqubmv0l2m0nzdmzwe5ltjjntutndyzoc04ngewlty1mzmwnjhingjkzs9izxjiifrvbmljlxgylmpwzw__.jpeg?w=600",
     price: "60Kr",
     reviews: [],
   },
