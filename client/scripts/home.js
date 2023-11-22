@@ -39,8 +39,12 @@ function submitReview(juiceName) {
   const reviewText = document.getElementById("reviewText").value;
   const stars = document.querySelectorAll(".star-rating i.active").length;
 
-  // You may replace 'username' with the actual username of the reviewer
-  const username = "username";
+  const username = localStorage.getItem("currentUser");
+
+  if (username === null) {
+    alert("Please sign in to submit a review.");
+    return;
+  }
 
   // Make a POST request to your server
   fetch("/submitreview", {
@@ -65,7 +69,6 @@ function submitReview(juiceName) {
       alert("Error submitting review. Please try again.");
     });
 }
-// home.js
 
 async function fetchJuices() {
   let response;

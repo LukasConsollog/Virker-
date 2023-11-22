@@ -91,6 +91,7 @@
   font-size: 16px;
   cursor: pointer;
   z-index: 1;
+  border-radius: 10px;
 }
 
 /* X symbol for the close button */
@@ -98,4 +99,5 @@
   content: "X";
   font-weight: bold;
   z-index: 2;
+  border-radius: 10px;
 }
