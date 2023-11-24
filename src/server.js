@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = 3000;
+const usersRoutes = require("../routes/usersRoutes.js");
 
 const path = require("path");
 app.use(cors());
@@ -124,6 +125,7 @@ const juices = [
     reviews: [],
   },
 ];
+app.use("/users", usersRoutes);
 app.post("/submitreview", (req, res) => {
   const { username, juiceName, stars, review } = req.body;
   console.log("Received review submission:", {
