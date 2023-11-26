@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = 3000;
-const usersRoutes = require("/Users/Lukas/Documents/løsning/src/routes/usersRoutes.js");
-const reviewRoutes = require("/Users/Lukas/Documents/løsning/src/routes/reviewRoutes.js");
+const usersRoutes = require("../routes/usersRoutes.js");
+const reviewRoutes = require("../routes/reviewRoutes.js");
 
 const path = require("path");
 app.use(cors());

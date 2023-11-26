@@ -1,6 +1,4 @@
-const {
-  DBconnect,
-} = require("/Users/Lukas/Documents/løsning/src/models/DBconnect.js");
+const { DBconnect } = require("../models/DBconnect.js");
 
 function createUserInDatabase(req, res) {
   // Henter bruger data fra mit request body

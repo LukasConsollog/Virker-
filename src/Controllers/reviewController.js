@@ -1,6 +1,4 @@
-const {
-  DBconnect,
-} = require("/Users/Lukas/Documents/løsning/src/models/DBconnect.js");
+const { DBconnect } = require("../models/DBconnect.js");
 
 function createReviewInDatabase(req, res) {
   const { username, juiceName, stars, review } = req.body;

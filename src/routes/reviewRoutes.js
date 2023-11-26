@@ -1,5 +1,5 @@
 const express = require("express");
-const reviewController = require("/Users/Lukas/Documents/løsning/src/Controllers/reviewController.js");
+const reviewController = require("../Controllers/reviewController.js");
 const router = express.Router();
 
 router.post("/submitreview", reviewController.createReviewInDatabase);
