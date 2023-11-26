@@ -1,6 +1,6 @@
 const Connection = require("tedious").Connection;
 const Request = require("tedious").Request;
-const config = require("../config.json");
+const config = require("/Users/Lukas/Documents/løsning/src/models/config.json");
 
 // Function som returnere promis
 const DBconnect = (query) => {

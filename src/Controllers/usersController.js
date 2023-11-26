@@ -1,4 +1,6 @@
-const { DBconnect } = require("../DBconnect.js");
+const {
+  DBconnect,
+} = require("/Users/Lukas/Documents/løsning/src/models/DBconnect.js");
 
 function createUserInDatabase(req, res) {
   // Henter bruger data fra mit request body
@@ -11,13 +13,13 @@ function createUserInDatabase(req, res) {
 
   DBconnect(insertQuery)
     .then(() => {
-      // ved succes
-      res.status(200).send("User data inserted into database");
+      // On success
+      res.status(200).send("Review data inserted into the database");
     })
     .catch((error) => {
-      // problemer så:
+      // On error
       console.error(error);
-      res.status(500).send("Error inserting user data into database");
+      res.status(500).send("Error inserting review data into the database");
     });
 }
 function getUsersFromDatabase(req, res) {
