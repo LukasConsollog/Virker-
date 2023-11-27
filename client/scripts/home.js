@@ -124,7 +124,9 @@ async function showReview(juiceName) {
     const juiceReviews = juices.filter(
       (review) => review.juice_name === juiceName
     );
-
+    const juiceCard = document.querySelector(
+      `.juice-card[data-juice="${juice.juice_name}"]`
+    );
     // Create a modal container
     const modalContainer = document.createElement("div");
     modalContainer.classList.add("modal-container");
@@ -152,7 +154,7 @@ async function showReview(juiceName) {
 
     // Juice Image
     const juiceImageElement = document.createElement("img");
-    juiceImageElement.src = document.getElementById("juiceImage").src; // Use the juice image from the HTML
+    juiceImageElement.src = juiceCard.querySelector(".juice-image").src; // Use the image source from the HTML
     juiceDetailsContainer.appendChild(juiceImageElement);
 
     modalContent.appendChild(juiceDetailsContainer);

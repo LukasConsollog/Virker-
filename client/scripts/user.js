@@ -27,7 +27,7 @@ function login() {
   const username1 = prompt("Enter username:");
   const password1 = prompt("Enter password:");
 
-  return fetch("http://localhost:3000/users")
+  return fetch("/users")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch user data.");

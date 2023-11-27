@@ -61,7 +61,7 @@ body {
 }
 
 .header {
-  background-color: #facbf2;
+  background-color: #f8d3f2;
   color: rgb(8, 7, 7);
   padding: 20px;
   text-align: center;
@@ -141,7 +141,7 @@ body {
   padding: 8px 15px;
   cursor: pointer;
   border-radius: 10px;
-  margin-left: 10px; /* Add some spacing between buttons */
+  margin-left: 10px;
 }
 
 .user-button:hover {
