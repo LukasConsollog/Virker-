@@ -80,14 +80,14 @@ async function fetchJuices() {
   try {
     response = await fetch("/getreview");
 
-    // Check if the response is JSON
+    // Check om response ers JSON
 
     const data = await response.json();
     return data;
   } catch (error) {
     console.error("Error fetching juices:", error);
 
-    // Log the entire response for debugging
+    // problemfinder
     console.error("Entire response:", response);
 
     // Check if response is defined before using it
@@ -107,10 +107,9 @@ async function fetchJuices() {
 
 async function showReview(juiceName) {
   try {
-    // Fetch the juices from the server
     const juices = await fetchJuices();
 
-    // Find the corresponding juice object from the fetched data
+    // Matcher juice data
     const juice = juices.find((juice) => juice.juice_name === juiceName);
 
     console.log("Found juice:", juice);
@@ -120,22 +119,22 @@ async function showReview(juiceName) {
       return;
     }
 
-    // Filter reviews based on the juice_name
+    // Filter reviews på juice_name
     const juiceReviews = juices.filter(
       (review) => review.juice_name === juiceName
     );
     const juiceCard = document.querySelector(
       `.juice-card[data-juice="${juice.juice_name}"]`
     );
-    // Create a modal container
+    // modal container
     const modalContainer = document.createElement("div");
     modalContainer.classList.add("modal-container");
 
-    // Create a modal content div
+    // modal content div
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
 
-    // Create a close button for the modal
+    //  close button for modal
     const closeButton = document.createElement("button");
     closeButton.textContent = "";
     closeButton.addEventListener("click", () => {
@@ -143,23 +142,23 @@ async function showReview(juiceName) {
     });
     modalContent.appendChild(closeButton);
 
-    // Create a container for the juice details
+    // container til juice details
     const juiceDetailsContainer = document.createElement("div");
     juiceDetailsContainer.classList.add("juice-details-container");
 
-    // Juice Name
+    // Juice Navn
     const juiceNameElement = document.createElement("h2");
     juiceNameElement.textContent = juice.juice_name;
     juiceDetailsContainer.appendChild(juiceNameElement);
 
-    // Juice Image
+    // Juice src
     const juiceImageElement = document.createElement("img");
     juiceImageElement.src = juiceCard.querySelector(".juice-image").src; // Use the image source from the HTML
     juiceDetailsContainer.appendChild(juiceImageElement);
 
     modalContent.appendChild(juiceDetailsContainer);
 
-    // Create a container for the reviews
+    // review container
     const reviewsContainer = document.createElement("div");
     reviewsContainer.classList.add("reviews-container");
 
@@ -183,7 +182,7 @@ async function showReview(juiceName) {
         const starsElement = document.createElement("div");
         starsElement.classList.add("review-stars");
 
-        // Assuming review.stars is a number between 1 and 5
+        // simpelt gange på stjernre
         starsElement.innerHTML = `${"★".repeat(review.stars)}`;
 
         const reviewTextElement = document.createElement("div");
@@ -201,13 +200,13 @@ async function showReview(juiceName) {
     modalContent.appendChild(reviewsContainer);
     modalContainer.appendChild(modalContent);
 
-    // Append the modal container to the body
+    // Append modal container til vores html body
     document.body.appendChild(modalContainer);
 
-    // Display the modal
+    // Display modal
     modalContainer.style.display = "block";
 
-    // Update stars if needed
+    // er dette behov?
     updateStars();
   } catch (error) {
     console.error("Error fetching and displaying reviews:", error);

@@ -57,7 +57,6 @@ function login() {
     });
 }
 
-// Create user event
 function createUser() {
   const storedUserData = localStorage.getItem("userData");
 
@@ -69,8 +68,7 @@ function createUser() {
   const username = prompt("Enter username:");
   const password = prompt("Enter password:");
 
-  // POST request to our backend API to create a new user
-  fetch("http://localhost:3000/users", {
+  fetch("/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
