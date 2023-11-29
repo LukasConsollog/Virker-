@@ -11,13 +11,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
-// Endpoint to handle review submission
-
 app.use("/", reviewRoutes);
 app.use("/users", usersRoutes);
 app.use(express.static(path.join(__dirname, "../client")));
 
-// Handle requests for the root URL
 app.get("*", (req, res) => {
   console.log(
     "Serving HTML file at:",
