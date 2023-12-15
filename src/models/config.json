@@ -1,14 +1,14 @@
 {
-  "server": "lukasnyhedsapp.database.windows.net",
+  "server": "jogj.database.windows.net",
   "authentication": {
     "type": "default",
     "options": {
-      "userName": "Lukas",
-      "password": "asdasd12L."
+      "userName": "zaal",
+      "password": "Joeogjuice1"
     }
   },
   "options": {
     "encrypt": true,
-    "database": "Nyhedsapp"
+    "database": "joeogjuice"
   }
 }
