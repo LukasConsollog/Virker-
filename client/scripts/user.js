@@ -1,14 +1,10 @@
 //Funktion til client side hashing
-async function hashPassword(password, iterations = 4) {
+// fungere gennem script fra home.html (CryptoJS)
+function hashPassword(password, iterations = 4) {
   let hashedPassword = password;
 
   for (let i = 0; i < iterations; i++) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(hashedPassword);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    hashedPassword = Array.from(new Uint8Array(hashBuffer))
-      .map((byte) => byte.toString(16).padStart(2, "0"))
-      .join("");
+    hashedPassword = CryptoJS.SHA256(hashedPassword).toString(CryptoJS.enc.Hex);
   }
 
   return hashedPassword;
@@ -42,7 +38,7 @@ async function login() {
   const password = prompt("Enter password:");
 
   // Client-side hash
-  const hashedPassword = await hashPassword(password);
+  const hashedPassword = hashPassword(password);
 
   return fetch("/users")
     .then((response) => {
