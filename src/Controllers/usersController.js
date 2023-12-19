@@ -24,13 +24,23 @@ function createUserInDatabase(req, res) {
 
   DBconnect(insertQuery)
     .then(() => {
-      res.status(200).send("User data inserted into the database");
+      res.status(200).send("User created successfully");
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send("Error inserting user data into the database");
+
+      // Check if the error is due to a unique constraint violation
+      if (
+        error.code === "23505" ||
+        error.message.includes("unique constraint")
+      ) {
+        res.status(400).send("A user with the given username already exists.");
+      } else {
+        res.status(500).send("Error creating user");
+      }
     });
 }
+
 function getUsersFromDatabase(req, res) {
   // Execute SQL query henter brugere fra min database
   const selectQuery = `SELECT * FROM dbo.users`;
