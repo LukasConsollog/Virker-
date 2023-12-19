@@ -1,4 +1,19 @@
-// Event onclick på vores logud knap
+//Funktion til client side hashing
+async function hashPassword(password, iterations = 4) {
+  let hashedPassword = password;
+
+  for (let i = 0; i < iterations; i++) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(hashedPassword);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    hashedPassword = Array.from(new Uint8Array(hashBuffer))
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  return hashedPassword;
+}
+// Dovn Event onclick på vores logud knap (Clear localhost)
 const logoutButton = document.getElementById("logout");
 
 logoutButton.addEventListener("click", () => {
@@ -12,8 +27,7 @@ logoutButton.addEventListener("click", () => {
   }
 });
 
-// Gammel Kode
-function login() {
+async function login() {
   const storedUserData = localStorage.getItem("userData");
 
   if (storedUserData !== null) {
@@ -24,8 +38,11 @@ function login() {
     return Promise.resolve();
   }
 
-  const username1 = prompt("Enter username:");
-  const password1 = prompt("Enter password:");
+  const username = prompt("Enter username:");
+  const password = prompt("Enter password:");
+
+  // Client-side hash
+  const hashedPassword = await hashPassword(password);
 
   return fetch("/users")
     .then((response) => {
@@ -35,9 +52,8 @@ function login() {
       return response.json();
     })
     .then((userData) => {
-      console.log(userData);
       const user = userData.find(
-        (u) => u.username === username1 && u.password === password1
+        (u) => u.username === username && u.password === hashedPassword
       );
       if (user) {
         alert("Login successful.");
