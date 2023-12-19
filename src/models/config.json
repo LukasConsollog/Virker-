@@ -1,14 +1,14 @@
 {
-  "server": "juiceapp.database.windows.net",
+  "server": "lukasnyhedsapp.database.windows.net",
   "authentication": {
     "type": "default",
     "options": {
-      "userName": "lukas",
+      "userName": "Lukas",
       "password": "asdasd12L."
     }
   },
   "options": {
     "encrypt": true,
-    "database": "Juicereview"
+    "database": "Nyhedsapp"
   }
 }
