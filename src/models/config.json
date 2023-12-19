@@ -1,14 +1,14 @@
 {
-  "server": "jogj.database.windows.net",
+  "server": "juiceapp.database.windows.net",
   "authentication": {
     "type": "default",
     "options": {
-      "userName": "zaal",
-      "password": "Joeogjuice1"
+      "userName": "lukas",
+      "password": "asdasd12L."
     }
   },
   "options": {
     "encrypt": true,
-    "database": "joeogjuice"
+    "database": "Juicereview"
   }
 }
