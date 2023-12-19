@@ -76,6 +76,7 @@ function createUser() {
     body: JSON.stringify({ username, password }),
   })
     .then((response) => {
+      console.log(response);
       if (response.ok) {
         alert("User created successfully.");
       } else {
