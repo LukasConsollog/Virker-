@@ -1,23 +1,34 @@
 const { DBconnect } = require("../models/DBconnect.js");
+const crypto = require("crypto");
+
+const hashPassword = (password, iterations = 4) => {
+  let hashedPassword = password;
+
+  for (let i = 0; i < iterations; i++) {
+    const hash = crypto.createHash("sha256");
+    hash.update(hashedPassword, "utf-8");
+    hashedPassword = hash.digest("hex");
+  }
+
+  return hashedPassword;
+};
 
 function createUserInDatabase(req, res) {
-  // Henter bruger data fra mit request body
   const { username, password } = req.body;
-  // Sætter ind i atabase
+  const hashedPassword = hashPassword(password); // Hash the password
+
   const insertQuery = `
       INSERT INTO dbo.users (username, password)
-      VALUES ('${username}', '${password}')
+      VALUES ('${username}', '${hashedPassword}')
     `;
 
   DBconnect(insertQuery)
     .then(() => {
-      // On success
-      res.status(200).send("Review data inserted into the database");
+      res.status(200).send("User data inserted into the database");
     })
     .catch((error) => {
-      // On error
       console.error(error);
-      res.status(500).send("Error inserting review data into the database");
+      res.status(500).send("Error inserting user data into the database");
     });
 }
 function getUsersFromDatabase(req, res) {
