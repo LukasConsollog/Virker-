@@ -1,11 +1,16 @@
 const { DBconnect } = require("../models/DBconnect.js");
 const crypto = require("crypto");
 
-const hashPassword = (password) => {
-  const hash = crypto.createHash("sha256");
-  const stream = hash.update(password, "utf-8");
-  stream.end();
-  return hash.digest("hex");
+const hashPassword = (password, iterations = 4) => {
+  let hashedPassword = password;
+
+  for (let i = 0; i < iterations; i++) {
+    const hash = crypto.createHash("sha256");
+    hash.update(hashedPassword, "utf-8");
+    hashedPassword = hash.digest("hex");
+  }
+
+  return hashedPassword;
 };
 
 function createUserInDatabase(req, res) {
