@@ -1,46 +1,25 @@
 const { DBconnect } = require("../models/DBconnect.js");
-const crypto = require("crypto");
-
-const hashPassword = (password, iterations = 4) => {
-  let hashedPassword = password;
-
-  for (let i = 0; i < iterations; i++) {
-    const hash = crypto.createHash("sha256");
-    hash.update(hashedPassword, "utf-8");
-    hashedPassword = hash.digest("hex");
-  }
-
-  return hashedPassword;
-};
 
 function createUserInDatabase(req, res) {
+  // Henter bruger data fra mit request body
   const { username, password } = req.body;
-  const hashedPassword = hashPassword(password); // Hash the password
-
+  // Sætter ind i atabase
   const insertQuery = `
       INSERT INTO dbo.users (username, password)
-      VALUES ('${username}', '${hashedPassword}')
+      VALUES ('${username}', '${password}')
     `;
 
   DBconnect(insertQuery)
     .then(() => {
-      res.status(200).send("User created successfully");
+      // On success
+      res.status(200).send("Review data inserted into the database");
     })
     .catch((error) => {
+      // On error
       console.error(error);
-
-      // Check if the error is due to a unique constraint violation
-      if (
-        error.code === "23505" ||
-        error.message.includes("unique constraint")
-      ) {
-        res.status(400).send("A user with the given username already exists.");
-      } else {
-        res.status(500).send("Error creating user");
-      }
+      res.status(500).send("Error inserting review data into the database");
     });
 }
-
 function getUsersFromDatabase(req, res) {
   // Execute SQL query henter brugere fra min database
   const selectQuery = `SELECT * FROM dbo.users`;
