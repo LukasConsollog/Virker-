@@ -49,7 +49,7 @@ function submitReview(juiceName) {
     return;
   }
 
-  // Make a POST request to your server
+  // Post rreq til server
   fetch("/submitreview", {
     method: "POST",
     headers: {
@@ -62,10 +62,10 @@ function submitReview(juiceName) {
       review: reviewText,
     }),
   })
-    .then((response) => response.text()) // Read the response as text
+    .then((response) => response.text()) // response
     .then((responseText) => {
       console.log("Response from server:", responseText);
-      alert(responseText); // Display the response as a plain string
+      alert(responseText); // respons som string
       closeOverlay();
     })
     .catch((error) => {
@@ -76,7 +76,6 @@ function submitReview(juiceName) {
 
 async function fetchJuices() {
   let response;
-
   try {
     response = await fetch("/getreview");
 
@@ -90,10 +89,10 @@ async function fetchJuices() {
     // problemfinder
     console.error("Entire response:", response);
 
-    // Check if response is defined before using it
+    // Er respons defineret
     if (response) {
       try {
-        // Log the actual response text for further debugging
+        // mere debugging
         const responseText = await response.text();
         console.error("Actual response text:", responseText);
       } catch (textError) {
@@ -153,7 +152,7 @@ async function showReview(juiceName) {
 
     // Juice src
     const juiceImageElement = document.createElement("img");
-    juiceImageElement.src = juiceCard.querySelector(".juice-image").src; // Use the image source from the HTML
+    juiceImageElement.src = juiceCard.querySelector(".juice-image").src; // billede fra html trækkes her
     juiceDetailsContainer.appendChild(juiceImageElement);
 
     modalContent.appendChild(juiceDetailsContainer);
@@ -206,7 +205,7 @@ async function showReview(juiceName) {
     // Display modal
     modalContainer.style.display = "block";
 
-    // er dette behov?
+    //
     updateStars();
   } catch (error) {
     console.error("Error fetching and displaying reviews:", error);

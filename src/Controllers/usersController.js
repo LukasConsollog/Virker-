@@ -15,7 +15,7 @@ const hashPassword = (password, iterations = 4) => {
 
 function createUserInDatabase(req, res) {
   const { username, password } = req.body;
-  const hashedPassword = hashPassword(password); // Hash the password
+  const hashedPassword = hashPassword(password); // Hash 4x
 
   const insertQuery = `
       INSERT INTO dbo.users (username, password)
